@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>TT2020 | More Information</title>
+  <link rel="stylesheet" href="style.css" type="text/css">
+</head>
+<body>
+    <h2>MY SOLUTION.</h2>
+    <p>
+    While it would be ideal for the font itself to contain code through which it could create a (near-) infinite number of similar-looking glyphs, that is not possible in an OpenType font.<sup style="position:absolute">&dagger;</sup>&nbsp;&nbsp;My first inspiration was <em>FF Duper</em>, a plucky little proprietary font developed by Martin Wenzel in 2009. <em>FF Duper</em>, however, works via hundreds of GSUB subtables; while I tried to follow Wenzel's lead in this regard, I eventually realized that for my font it was not going to be possible; the layout would be far too slow and the GSUB table far too large.
+    </p>
+    <p>The solution came to me after an IRC chat with my extremely patient friend Skef Iterum (thank you Skef). Instead of large tables and variable numbers of alternate glyphs, acquiesce, and include <em>n</em> (I decided on 9) versions of each glyph, even such glyphs as &ldquo;space&rdquo;. Then, define classes <em>@a1</em> through <em>@a9</em> which include a list of all glyphs in the font. For example, <em>@a2</em> begins as:<br>
+    <code><em>@a2</em> = [space.2 exclam.2 quotedbl.2 numbersign.2 dollar.2 percent.2 ampersand.2 quotesingle.2 parenleft.2 parenright.2 asterisk.2plus.2 comma.2 hyphen.2 period.2 slash.2 zero.2 one.2 two.2 three. 2 four.2 five.2 six.2 seven.2 eight.2 nine.2 colon.2 semicolon.2 less.2 equal.2 greater.2 question.2 at.2 A.2 B.2 C.2 D.2 E.2 F.2 G.2 H.2 I.2 J.2 K.2 L.2 M.2 N.2 O.2 P.2 Q.2 &hellip;</code>
+
+    Having these classes, we can then do this:
+
+    <code>
+feature calt {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;lookup calt1 {<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sub @a1 @a1' by @a2;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sub @a2 @a1' by @a3;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sub @a3 @a1' by @a4;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sub @a4 @a1' by @a5;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sub @a5 @a1' by @a6;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sub @a6 @a1' by @a7;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sub @a7 @a1' by @a8;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;sub @a8 @a1' by @a9;<br/>
+&nbsp;&nbsp;&nbsp;&nbsp;} calt1;<br/>
+} calt;
+    </code>
+
+    And do our layout with a single subtable! This is of course only pseudo-random, but it's, almost all of the time, &ldquo;good enough,&rdquo; and with a higher <em>n</em> hereon <em>m</em> it becomes more and more realistic. Perhaps, indeed, only popular glyphs would need have the full number of <em>m</em> versions; &ldquo;unpopular&rdquo; glyphs, when a version of index <em>i</em> is requested and <em>i</em> &gt; <em>n</em>, the glyph could simply be a reference to the glyph of index <em>i</em> mod <em>n</em>.<br/>
+    </p>
+    <p>
+    As it stands though, what we have is good enough for an initial version. The guts of the system only obviously spill out with carefully chosen inputs, e.g.:<br>
+    <span style="font-size:4em;line-height:1.5em">QBEE<span style="color:#ee0000">K</span>E<span style="color:#0000ee">E</span>PINBEE<span style="color:#ee0000">K</span>E<span style="color:#0000ee">E</span>PIN </span>
+    </p>
+    <p>
+    <img src="ff.png" style="width:42em">
+    </p>
+    <p>
+    The letters highlighted in red and blue are the same because they are nine characters apart. The computer tokenizes the string to glyph-names as <em>Q B.2 E.3 E.4 <span style="color:#ee0000">K.5</span> E.6 <span style="color:#0000ee">E.7</span> P.8 I.9 N B.2 E.3 E.4 <span style="color:#ee0000">K.5</span> E.6 <span style="color:#0000ee">E.7</span> P.8 I.9 N</em>.
+    </p>
+    <p>
+    Each distinct font style is built from a base font and a base SFD; for the regular style, <em>TT.sfd</em> (based on IBM Selectric Pica 10 Pitch), and the italic, <em>TT_ita.sfd</em> (based on IBM Selectric Light Italic 12 Pitch).
+    <ol>
+        <li>First, we need an SVG of each glyph image. So, we ask FontForge to give us one.</li>
+        <li>We have two choices. We can either <ul style="list-style:'&bullet;&nbsp;'"><li>write an Inkscape script to roughen up the glyph but keeping it as a vector, or</li> <li>we can export it to PNG and roughen it up as a bitmap. So far all &laquo;style&raquo;s do the latter, but I haven't ruled out the former forever. The important thing about the script is that it must be pseudo-random, initialized with a seed, so that we get the same output each time for the same seed. Right now, all the scripts are GIMP scripts (or rely on GIMP's plumbling via GEGL), and this means it can take a long time to generate each glyph @ a high DPI, muchless nine versions of each glyph. I'm interested in making a script which would use OpenGL shaders on the input bitmap instead.</li></ul></li> 
+        <li>Re-import the glyph back into FontForge, followed by the other <em>n</em> copies of the glyph.</li>
+        <li>Merge the OpenType layout features, the most important one of which is &ldquo;Contextual Alternates&rdquo;, (&laquo;calt&raquo;).</li>
+    </ol>
+    </p>
+    <p> &dagger; Assuming that one is using one of the commonplace OpenType layout engines of late 2019, such as HarfBuzz.
+    </p>
+    <hr>
+    <a href="download.html">NEXT PAGE: &raquo;&raquo; Download the Fonts &raquo;&raquo;</a>
+    <hr>
+    <p>Content &copy; Fredrick R. Brennan, originally released on 1 January 2020</p>
+</body>
+</html>

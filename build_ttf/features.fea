@@ -1,0 +1,120 @@
+languagesystem DFLT dflt;
+languagesystem latn dflt;
+languagesystem grek dflt;
+languagesystem cyrl dflt;
+
+@zero = [zero zero.2 zero.3 zero.4 zero.5 zero.6 zero.7 zero.8 zero.9];
+@one = [one one.2 one.3 one.4 one.5 one.6 one.7 one.8 one.9];
+@two = [two two.2 two.3 two.4 two.5 two.6 two.7 two.8 two.9];
+@three = [three three.2 three.3 three.4 three.5 three.6 three.7 three.8 three.9];
+@four = [four four.2 four.3 four.4 four.5 four.6 four.7 four.8 four.9];
+@five = [five five.2 five.3 five.4 five.5 five.6 five.7 five.8 five.9];
+@six = [six six.2 six.3 six.4 six.5 six.6 six.7 six.8 six.9];
+@seven = [seven seven.2 seven.3 seven.4 seven.5 seven.6 seven.7 seven.8 seven.9];
+@eight = [eight eight.2 eight.3 eight.4 eight.5 eight.6 eight.7 eight.8 eight.9];
+@nine = [nine nine.2 nine.3 nine.4 nine.5 nine.6 nine.7 nine.8 nine.9];
+@zero.dnom = [zero.dnom zero.dnom.2 zero.dnom.3 zero.dnom.4 zero.dnom.5 zero.dnom.6 zero.dnom.7 zero.dnom.8 zero.dnom.9];
+@one.dnom = [one.dnom one.dnom.2 one.dnom.3 one.dnom.4 one.dnom.5 one.dnom.6 one.dnom.7 one.dnom.8 one.dnom.9];
+@two.dnom = [two.dnom two.dnom.2 two.dnom.3 two.dnom.4 two.dnom.5 two.dnom.6 two.dnom.7 two.dnom.8 two.dnom.9];
+@three.dnom = [three.dnom three.dnom.2 three.dnom.3 three.dnom.4 three.dnom.5 three.dnom.6 three.dnom.7 three.dnom.8 three.dnom.9];
+@four.dnom = [four.dnom four.dnom.2 four.dnom.3 four.dnom.4 four.dnom.5 four.dnom.6 four.dnom.7 four.dnom.8 four.dnom.9];
+@five.dnom = [five.dnom five.dnom.2 five.dnom.3 five.dnom.4 five.dnom.5 five.dnom.6 five.dnom.7 five.dnom.8 five.dnom.9];
+@six.dnom = [six.dnom six.dnom.2 six.dnom.3 six.dnom.4 six.dnom.5 six.dnom.6 six.dnom.7 six.dnom.8 six.dnom.9];
+@seven.dnom = [seven.dnom seven.dnom.2 seven.dnom.3 seven.dnom.4 seven.dnom.5 seven.dnom.6 seven.dnom.7 seven.dnom.8 seven.dnom.9];
+@eight.dnom = [eight.dnom eight.dnom.2 eight.dnom.3 eight.dnom.4 eight.dnom.5 eight.dnom.6 eight.dnom.7 eight.dnom.8 eight.dnom.9];
+@nine.dnom = [nine.dnom nine.dnom.2 nine.dnom.3 nine.dnom.4 nine.dnom.5 nine.dnom.6 nine.dnom.7 nine.dnom.8 nine.dnom.9];
+@zero.numr = [zero.numr zero.numr.2 zero.numr.3 zero.numr.4 zero.numr.5 zero.numr.6 zero.numr.7 zero.numr.8 zero.numr.9];
+@one.numr = [one.numr one.numr.2 one.numr.3 one.numr.4 one.numr.5 one.numr.6 one.numr.7 one.numr.8 one.numr.9];
+@two.numr = [two.numr two.numr.2 two.numr.3 two.numr.4 two.numr.5 two.numr.6 two.numr.7 two.numr.8 two.numr.9];
+@three.numr = [three.numr three.numr.2 three.numr.3 three.numr.4 three.numr.5 three.numr.6 three.numr.7 three.numr.8 three.numr.9];
+@four.numr = [four.numr four.numr.2 four.numr.3 four.numr.4 four.numr.5 four.numr.6 four.numr.7 four.numr.8 four.numr.9];
+@five.numr = [five.numr five.numr.2 five.numr.3 five.numr.4 five.numr.5 five.numr.6 five.numr.7 five.numr.8 five.numr.9];
+@six.numr = [six.numr six.numr.2 six.numr.3 six.numr.4 six.numr.5 six.numr.6 six.numr.7 six.numr.8 six.numr.9];
+@seven.numr = [seven.numr seven.numr.2 seven.numr.3 seven.numr.4 seven.numr.5 seven.numr.6 seven.numr.7 seven.numr.8 seven.numr.9];
+@eight.numr = [eight.numr eight.numr.2 eight.numr.3 eight.numr.4 eight.numr.5 eight.numr.6 eight.numr.7 eight.numr.8 eight.numr.9];
+@nine.numr = [nine.numr nine.numr.2 nine.numr.3 nine.numr.4 nine.numr.5 nine.numr.6 nine.numr.7 nine.numr.8 nine.numr.9];
+
+@dnom = [@zero.dnom @one.dnom @two.dnom @three.dnom @four.dnom @five.dnom @six.dnom @seven.dnom @eight.dnom @nine.dnom];
+@numr = [@zero.numr @one.numr @two.numr @three.numr @four.numr @five.numr @six.numr @seven.numr @eight.numr @nine.numr];
+@ordn = [@zero @one @two @three @four @five @six @seven @eight @nine];
+
+feature frac {
+    lookup fracf {
+        sub slash by fraction;
+    } fracf;
+
+    lookup fracs {
+        sub @ordn' fraction by @numr;
+        sub fraction @ordn' by @dnom;
+        sub @dnom @ordn' by @dnom;
+    } fracs;
+
+    lookup fracn {
+        sub @ordn' @numr by @numr;
+    } fracn;
+
+    lookup fracn3 {
+        sub @ordn' @numr @numr by @numr;
+    } fracn3;
+
+    lookup fracn4 {
+        sub @ordn' @numr @numr @numr by @numr;
+    } fracn4;
+
+    lookup fracn5 {
+        sub @ordn' @numr @numr @numr @numr by @numr;
+    } fracn5;
+
+    lookup fracn6 {
+        sub @ordn' @numr @numr @numr @numr @numr by @numr;
+    } fracn6;
+
+    lookup fracn7 {
+        sub @ordn' @numr @numr @numr @numr @numr @numr by @numr;
+    } fracn7;
+
+    lookup fracn8 {
+        sub @ordn' @numr @numr @numr @numr @numr @numr @numr by @numr;
+    } fracn8;
+
+    lookup fracn9 {
+        sub @ordn' @numr @numr @numr @numr @numr @numr @numr @numr by @numr;
+    } fracn9;
+
+    lookup fracn10 {
+        sub @ordn' @numr @numr @numr @numr @numr @numr @numr @numr @numr by @numr;
+    } fracn10;
+
+    lookup fracq {
+        pos @numr fraction -150;
+        pos fraction @dnom -150;
+        pos @numr @numr -150;
+        pos @dnom @dnom -150;
+    } fracq;
+} frac;
+
+@geresh = [geresh geresh.2 geresh.3 geresh.4];
+@gershayim = [gershayim gershayim.2 gershayim.3 gershayim.4];
+@yud = [yud yud.2 yud.3 yud.4];
+@vav = [vav vav.2 vav.3 vav.4];
+@vav_vav = [vav_vav vav_vav.2 vav_vav.3 vav_vav.4];
+@yud_vav = [yud_vav yud_vav.2 yud_vav.3 yud_vav.4];
+@yud_yud = [yud_yud yud_yud.2 yud_yud.3 yud_yud.4];
+
+@f = [f f.2 f.3 f.4];
+@i = [i i.2 i.3 i.4];
+@l = [l l.2 l.3 l.4];
+
+feature liga {
+    lookup ligahebrew {
+        sub @geresh @geresh by gershayim;
+        sub @yud @yud by yud_yud;
+        sub @vav @vav by vav_vav;
+        sub @yud @vav by yud_vav;
+    } ligahebrew;
+
+    lookup ligalatin {
+        sub @f @i by fi;
+        sub @f @l by fl;
+    } ligalatin;
+} liga;

@@ -1,0 +1,15 @@
+include(langs.fea);
+include(classes2.fea);
+
+feature calt {
+    lookup calt1 {
+        sub @a1 @a1' by @a2;
+        sub @a2 @a1' by @a3;
+        sub @a3 @a1' by @a4;
+        sub @a4 @a1' by @a5;
+        sub @a5 @a1' by @a6;
+        sub @a6 @a1' by @a7;
+        sub @a7 @a1' by @a8;
+        sub @a8 @a1' by @a9;
+    } calt1;
+} calt;

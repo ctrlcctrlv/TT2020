@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>TT2020</title>
+<style type="text/css">
+
+  @keyframes spincube {
+    from,to  { transform: rotateX(0deg) }
+    25%      { transform: rotateX(90deg);                            }
+    50%      { transform: rotateX(180deg);                            }
+    75%      { transform: rotateX(270deg);                            }
+    100%      { transform: rotateX(360deg);                            }
+  }
+
+  .cubespinner {
+    animation-name: spincube;
+    /*animation-timing-function: ease-in-out;*/
+    animation-timing-function: cubic-bezier(1.0, 0.05, 0.05, 1.0);
+    animation-iteration-count: infinite;
+    animation-duration: 25s;
+
+    transform-style: preserve-3d;
+
+    transform-origin: 0.655em 0.655em 0;
+  }
+
+  .stage {
+      width: 800px;
+      height: 120px;
+  }
+
+  .cubespinner div {
+      width: 800px;
+    position: absolute;
+    border: 1px solid #ccc;
+    background: rgba(255,255,255,1.0);
+    box-shadow: inset 0 0 20px rgba(0,0,0,0.2);
+    line-height: 120px;
+    text-align: center;
+    font-size: 100px;
+  }
+
+  .cubespinner .face1 {
+    transform: translateZ(0.6em);
+  }
+  .cubespinner .face2 {
+    transform: rotateY(90deg) translateZ(0.6em);
+  }
+  .cubespinner .face3 {
+    transform: rotateY(0deg) rotateX(90deg) translateZ(0.6em);
+  }
+  .cubespinner .face4 {
+    transform: rotateY(180deg) rotateZ(180deg) translateZ(0.6em);
+  }
+  .cubespinner .face5 {
+    transform: rotateY(-90deg) rotateZ(90deg) translateZ(0.6em);
+  }
+  .cubespinner .face6 {
+    transform: rotateX(-90deg) translateZ(0.6em);
+  }
+
+</style>
+  <style>
+   @font-face {
+  font-family: TTE;
+  src: url(../dist/TT2020StyleE-Regular.woff2);
+} 
+   @font-face {
+  font-family: TTD;
+  src: url(../dist/TT2020StyleD-Regular.woff2);
+} 
+   @font-face {
+  font-family: TTB;
+  src: url(../dist/TT2020StyleB-Regular.woff2);
+    font-weight: normal;
+  font-style: normal;
+} 
+
+   @font-face {
+  font-family: TTB_ita;
+  src: url(../dist/TT2020StyleB-Italic.woff2);
+  font-weight: normal;
+  font-style: italic, oblique;
+} 
+
+   @font-face {
+  font-family: TTF;
+  src: url(../dist/TT2020StyleF-Regular-ASCII.woff2);
+} 
+   @font-face {
+  font-family: TTG;
+  src: url(../dist/TT2020StyleG-Regular-ASCII.woff2);
+} 
+   @font-face {
+  font-family: TT;
+  src: url(../dist/TT2020Base-Regular.woff2);
+} 
+
+*{font-display:block}
+p{margin:0;margin-top:50px}
+body {font-family:TT;font-size:100px}
+h1{font-family:TTB;font-weight:normal;font-size:400px;text-align:center;margin-bottom:0px;margin-top:0px}
+hr{margin:15px}
+.slogan{text-align:center;font-family:TTB;line-height:1.15}
+em{font-family:TTB_ita;font-style:normal}
+.dl {text-align:center}
+.dl a:hover{font-family:TTB_ita;line-height:.9}
+
+@media screen and (max-width: 1776px) {
+  h1 {
+    font-size:200px;
+  }
+  .dl { font-size:100px }
+  .cubespinner div, .slogan {
+      font-size:70px
+  }
+  .cubespinner, .stage {
+      height:80px;
+      width:450px;
+  }
+  .cubespinner div {
+      height:80px;
+      width:450px;
+      line-height:80px;
+      overflow:hidden;
+  }
+}
+@media screen and (max-width: 770px) {
+  h1 {
+    font-size:100px;
+  }
+  .dl { font-size:36px }
+  .cubespinner div, .slogan {
+      font-size:35px
+  }
+  .cubespinner, .stage {
+      height:35px;
+      width:250px;
+  }
+  .cubespinner div {
+      height:35px;
+      width:250px;
+      line-height:35px;
+      overflow:hidden;
+  }
+}
+
+
+  </style>
+</head>
+<body>
+    <h1>TT2020-</h1>
+    <div class="slogan">
+        <div style="display:inline-block;vertical-align:0.2em">the</div>
+<div class="stage" style="display:inline-block">
+<div class="cubespinner">
+<div class="face1" style="font-family:TTF">advanced</div>
+<div class="face3" style="font-family:TTD">spontaneous</div>
+<div class="face4" style="font-family:TTG"><span>open source</span></div>
+<div class="face6" style="font-family:TTE">multilingual</div>
+</div>
+</div>
+<div><em>typewriter font family</em> for a new decade.</div>
+    </div>
+<hr>
+<div class="dl"><a href="download.html">Download</a> <a href="moreinfo.html">More Info</a></div>
+
+<!--
+  <p>TT2020 is an advanced, multilingual and free typewriter font family for a new decade.</p>
+  <p>תת ה'תש"ף הוא продвинутый, многоязычный և անվճար γραμματοσειρά γραφομηχανής նոր տասնամյակի համար:</p>
+  <p>MMMMMMMMMM &Ntilde;&Ntilde;&Ntilde;&Ntilde;&Ntilde;&Ntilde;&Ntilde;&Ntilde;&Ntilde;&Ntilde; $$$$$$$$$$ ?????????? <span style="font-feature-settings: 'frac'">88/33</span></p>-->
+<!--
+<span style="font-family:TTD;">
+  <p>Mamma&rsquo;s sisters, (nuns,) in a nunnery abide.</p>
+</span>
+  <p>Mamma&rsquo;s sisters, (nuns,) in a nunnery abide.</p>
+<span style="font-family:TTD;">
+  <p>Matagal talaga ang buhay; kaya dapat tayo laging mag-enjoy.</p>
+  <p>Nga deti në det të ndritshëm, Nga majë mali në majë mali</p>
+  <p>Жук жужжит над абажуром, Жужжит жужелица, Жужжит, кружится.</p>
+  <p>En tres tristes trastos tragaban trigo tres tristes tigres.</p>
+  <p>¿Qué tigre trigaba más? Todos trigaban igual (sino yo).</p>
+</span>
+-->
+<p></p>
+
+</body>
+    <script>
+tt=document.querySelector("h1")
+console.log(tt.innerHTML)
+var i=j=0;
+u=function(){
+    i++;j++;
+    if (i>10)i=0;
+    tt.innerHTML=("<span style='color:white'>q</span>".repeat(i))+"TT2020-"
+    tt.style.marginLeft = "-"+(i*0.548)+"em"
+
+    styles=new Array("TTB", "TTD", "TTE", "TTF", "TTG");
+    s=Math.floor(j/20)%5
+    tt.style.fontFamily=styles[s]
+}
+setInterval(u, 500)
+    </script>
+</html>
