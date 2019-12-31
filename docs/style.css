@@ -1,16 +1,16 @@
 @font-face {
   font-family: TTB;
-  src: url(../dist/TT2020StyleB-Regular.woff2);
+  src: url(dist/TT2020StyleB-Regular.woff2);
   font-weight:bold;
 } 
 @font-face {
   font-family: TTE;
-  src: url(../dist/TT2020StyleE-Regular.woff2);
+  src: url(dist/TT2020StyleE-Regular.woff2);
   font-style: normal;
 } 
 @font-face {
   font-family: TTE;
-  src: url(../dist/TT2020StyleE-Italic.woff2);
+  src: url(dist/TT2020StyleE-Italic.woff2);
   font-weight: normal;
   font-style: italic;
 } 
