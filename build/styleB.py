@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # Generate style B, given PNG of a single glyph image.
 
 import sys
@@ -5,8 +6,8 @@ import os
 import subprocess
 
 i_f = os.environ["GIMPIMAGE"]
-seed = os.environ["SEED"] or 11
-alt = os.environ["ALT"] or 1
+seed = int(os.environ["SEED"]) or 11
+alt = int(os.environ["ALT"]) or 1
 if alt <= 1:
     outfile = "styleB/{}.png".format(i_f.replace("pngs/", "").replace(".png", ""))
 else:
@@ -26,7 +27,7 @@ for layer in im.layers:
 pdb.plug_in_gauss(im, im.active_drawable, 80, 80, 0)
 cell_noise_file = "gegl:cell-noise/{}x{}x{}.png".format(im.height, im.width, seed)
 if not os.path.isfile(cell_noise_file):
-    command = "/usr/bin/python3.8 gen_cell_noise.py -h {} -w {} -o 'gegl:cell-noise' -s {}".format(im.height, im.width, seed)
+    command = "flatpak-spawn --host python3 gen_cell_noise.py -h {} -w {} -o 'gegl:cell-noise' -s {}".format(im.height, im.width, seed)
     os.system(command)
 la = pdb.gimp_file_load_layer(im, cell_noise_file)
 new_mask = pdb.gimp_layer_create_mask(la, 5)

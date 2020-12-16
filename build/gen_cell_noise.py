@@ -3,9 +3,6 @@
 
 import argparse
 
-import sys
-sys.path.append("/usr/local/lib/python3.8/site-packages")
-
 ap = argparse.ArgumentParser(description="Generate Cell Noise without opening GIMP (unneeded arguments hardcoded, see script).", add_help=False)
 ap.add_argument('-h', '--height', type=int, required=True)
 ap.add_argument('-w', '--width', type=int, required=True)

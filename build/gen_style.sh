@@ -11,5 +11,5 @@ if [[ !("$1" =~ [A-G]) ]]; then exit 2; fi
 
 for i in `seq $SEQ`; do
     printf "\033[31mStep $i\e[0m\n"
-    ./list_glyphs.py | parallel --timeout 500% --progress --bar "./style$1.sh pngs/{}.png $i $i {#}"
+    ./list_glyphs.py "$TT" | parallel --timeout 500% --progress --bar "./style$1.sh pngs/{}.png $i $i {#}"
 done

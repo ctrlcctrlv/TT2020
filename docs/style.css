@@ -5,19 +5,19 @@
 } 
 @font-face {
   font-family: TTE;
-  src: url(dist/TT2020StyleE-Regular.woff2);
+  src: url(dist/TT2020StyleG-Regular.woff2);
   font-style: normal;
 } 
 @font-face {
-  font-family: TTE;
-  src: url(dist/TT2020StyleE-Italic.woff2);
+  font-family: TTEa;
+  src: url(dist/TT2020StyleG-Italic.woff2);
   font-weight: normal;
   font-style: italic;
 } 
 *{font-display:block}
 p{margin:0;margin-top:1.1em;line-height:1em}
 h2 {font-family:TTB}
-body {font-family:TTE;max-width:42em;font-size:1.5em}
+body {font-family:TTE;max-width:42em;font-size:1.5em;font-feature-settings: 'liga' off;}
 em{font-size:1em}
 code{font-family:TTE;padding:1.5em;display:block;color:#888}
 

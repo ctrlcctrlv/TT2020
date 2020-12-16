@@ -26,7 +26,7 @@ for layer in im.layers:
 pdb.plug_in_gauss(im, im.active_drawable, 40, 40, 0)
 cell_noise_file = "gegl:cell-noise/{}x{}x{}.png".format(im.height, im.width, seed)
 if not os.path.isfile(cell_noise_file):
-    command = "/usr/bin/python3.8 gen_cell_noise.py -h {} -w {} -o 'gegl:cell-noise' -s {}".format(im.height, im.width, seed)
+    command = "flatpak-spawn --host python3 gen_cell_noise.py -h {} -w {} -o 'gegl:cell-noise' -s {}".format(im.height, im.width, seed)
     os.system(command)
 la = pdb.gimp_file_load_layer(im, cell_noise_file)
 new_mask = pdb.gimp_layer_create_mask(la, 5)
